@@ -1,1 +1,1 @@
-/home/louis/rusty_path/rustlings/target/debug/functions1: /home/louis/rusty_path/rustlings/exercises/02_functions/functions1.rs
+/Users/taadulo6/Documents/rusty_path/rusty_path/rustlings/target/debug/functions1: /Users/taadulo6/Documents/rusty_path/rusty_path/rustlings/exercises/02_functions/functions1.rs
