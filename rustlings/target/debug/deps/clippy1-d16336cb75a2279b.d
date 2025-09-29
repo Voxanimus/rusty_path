@@ -1,6 +1,6 @@
-/Users/taadulo6/Documents/rusty_path/rusty_path/rustlings/target/debug/deps/clippy1-d16336cb75a2279b.d: exercises/22_clippy/clippy1.rs Cargo.toml
+/Users/taadulo6/Documents/rusty_path/rustlings/target/debug/deps/clippy1-d16336cb75a2279b.d: exercises/22_clippy/clippy1.rs Cargo.toml
 
-/Users/taadulo6/Documents/rusty_path/rusty_path/rustlings/target/debug/deps/libclippy1-d16336cb75a2279b.rmeta: exercises/22_clippy/clippy1.rs Cargo.toml
+/Users/taadulo6/Documents/rusty_path/rustlings/target/debug/deps/libclippy1-d16336cb75a2279b.rmeta: exercises/22_clippy/clippy1.rs Cargo.toml
 
 exercises/22_clippy/clippy1.rs:
 Cargo.toml:
