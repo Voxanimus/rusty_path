@@ -1,6 +1,6 @@
 DON'T EDIT THIS FILE!
 
-box1
+as_ref_mut
 
 intro1
 intro2
@@ -74,3 +74,7 @@ iterators2
 iterators3
 iterators4
 iterators5
+using_as
+from_into
+from_str
+try_from_into
