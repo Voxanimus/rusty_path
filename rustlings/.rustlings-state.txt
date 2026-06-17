@@ -1,6 +1,6 @@
 DON'T EDIT THIS FILE!
 
-macros1
+clippy1
 
 intro1
 intro2
@@ -81,7 +81,12 @@ cow1
 threads1
 threads2
 threads3
+macros1
+macros2
+macros3
+macros4
 using_as
 from_into
 from_str
 try_from_into
+as_ref_mut
