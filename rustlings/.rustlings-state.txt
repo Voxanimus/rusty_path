@@ -1,6 +1,6 @@
 DON'T EDIT THIS FILE!
 
-enums3
+clippy3
 
 intro1
 intro2
@@ -37,6 +37,7 @@ structs2
 structs3
 enums1
 enums2
+enums3
 strings1
 strings2
 strings3
@@ -87,6 +88,9 @@ macros1
 macros2
 macros3
 macros4
+clippy1
+clippy2
+clippy3
 using_as
 from_into
 from_str
