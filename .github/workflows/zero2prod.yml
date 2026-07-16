@@ -1,7 +1,7 @@
 name: zero2prod CI
 
 on:
-  push: 
+  push:
     paths:
       - "zero2prod/**"
       - ".github/workflows/zero2prod.yml"
@@ -9,7 +9,7 @@ on:
     paths:
       - "zero2prod/**"
       - ".github/workflows/zero2prod.yml"
-  
+
 env:
   CARGO_TERM_COLOR: always
   SQLX_VERSION: 0.8.6
@@ -17,7 +17,7 @@ env:
   APP_USER: app
   APP_USER_PWD: secret
   APP_DB_NAME: newsletter
-  
+
 jobs:
   test:
     name: Test
@@ -25,14 +25,14 @@ jobs:
     services:
       postgres:
         image: postgres:14
-        env: 
+        env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: postgres
 
         ports:
           - 5432:5432
-    
+
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -43,29 +43,30 @@ jobs:
       - name: Install sqlx-cli
         run: cargo install sqlx-cli
           --version=${{ env.SQLX_VERSION }}
-          --features ${{ env.SQLX_FEATURES }}
+          --features "${{ env.SQLX_FEATURES }}"
           --no-default-features
           --locked
 
       - name: Create app user in Postgres
         run: |
-            sudo apt-get install postgresql-client
+          sudo apt-get install postgresql-client
 
-            # Create the application user
-            CREATE_QUERY="CREATE USER ${APP_USER} WITH PASSWORD '${APP_USER_PWD}';"
-            PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${CREATE_QUERY}"
-            
-            # Grant create db privileges to the app user
-            GRANT_QUERY="ALTER USER ${APP_USER} CREATEDB;"
-            PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
+          # Create the application user
+          CREATE_QUERY="CREATE USER ${APP_USER} WITH PASSWORD '${APP_USER_PWD}';"
+          PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${CREATE_QUERY}"
+
+          # Grant create db privileges to the app user
+          GRANT_QUERY="ALTER USER ${APP_USER} CREATEDB;"
+          PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
 
       - name: Migrate database
-        run: SKIP_DOCKER=true ./zero2prod/scripts/init_db.sh
+        working-directory: zero2prod
+        run: SKIP_DOCKER=true ./scripts/init_db.sh
 
       - uses: Swatinem/rust-cache@v2
-        with: 
+        with:
           workspaces: zero2prod
-          
+
       - name: Run tests
         working-directory: zero2prod
         run: cargo test
@@ -125,7 +126,7 @@ jobs:
       - name: Install sqlx-cli
         run: cargo install sqlx-cli
           --version=${{ env.SQLX_VERSION }}
-          --features ${{ env.SQLX_FEATURES }}
+          --features "${{ env.SQLX_FEATURES }}"
           --no-default-features
           --locked
       - name: Create app user in Postgres
@@ -135,7 +136,7 @@ jobs:
           # Create the application user
           CREATE_QUERY="CREATE USER ${APP_USER} WITH PASSWORD '${APP_USER_PWD}';"
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${CREATE_QUERY}"
-        
+
           # Grant create db privileges to the app user
           GRANT_QUERY="ALTER USER ${APP_USER} CREATEDB;"
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
