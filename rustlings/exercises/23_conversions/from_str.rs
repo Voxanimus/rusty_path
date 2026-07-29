@@ -5,8 +5,6 @@
 // more about it in the documentation:
 // https://doc.rust-lang.org/std/str/trait.FromStr.html
 
-use std::env::args;
-use std::f32::consts::E;
 use std::num::ParseIntError;
 use std::str::FromStr;
 
