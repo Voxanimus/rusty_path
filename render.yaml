@@ -1,12 +1,15 @@
 databases:
   - name: newsletter-db
     databaseName: newsletter
-    user: postgres
+    user: app
+    plan: free
+    region: frankfurt
 
 services:
   - type: web
     name: zero2prod
     runtime: docker
+    plan: free
     dockerfilePath: ./zero2prod/Dockerfile
     dockerContext: ./zero2prod
     buildFilter:
@@ -16,6 +19,10 @@ services:
     envVars:
       - key: APP_ENVIRONMENT
         value: production
+      - key: PORT
+        value: 8000
+      - key: APP_APPLICATION__PORT
+        value: 8000
       - key: APP_DATABASE__HOST
         fromDatabase: { name: newsletter-db, property: host }
       - key: APP_DATABASE__PORT
