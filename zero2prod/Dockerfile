@@ -15,7 +15,7 @@ COPY . .
 ENV SQLX_OFFLINE=true
 RUN cargo build --release --bin zero2prod
 
-FROM debian:bullseye-slim AS runtime
+FROM debian:trixie-slim AS runtime
 
 WORKDIR /app
 RUN apt-get update -y \
