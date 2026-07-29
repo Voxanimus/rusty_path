@@ -1,0 +1,28 @@
+databases:
+  - name: newsletter-db
+    databaseName: newsletter
+    user: postgres
+
+services:
+  - type: web
+    name: zero2prod
+    runtime: docker
+    dockerfilePath: ./zero2prod/Dockerfile
+    dockerContext: ./zero2prod
+    buildFilter:
+      paths:
+        - zero2prod/**
+    healthCheckPath: /health_check
+    envVars:
+      - key: APP_ENVIRONMENT
+        value: production
+      - key: APP_DATABASE__HOST
+        fromDatabase: { name: newsletter-db, property: host }
+      - key: APP_DATABASE__PORT
+        fromDatabase: { name: newsletter-db, property: port }
+      - key: APP_DATABASE__USERNAME
+        fromDatabase: { name: newsletter-db, property: user }
+      - key: APP_DATABASE__PASSWORD
+        fromDatabase: { name: newsletter-db, property: password }
+      - key: APP_DATABASE__DATABASE_NAME
+        fromDatabase: { name: newsletter-db, property: database }
